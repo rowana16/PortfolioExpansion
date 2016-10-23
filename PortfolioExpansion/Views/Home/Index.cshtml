@@ -1,0 +1,57 @@
+﻿@using PortfolioExpansion.Models
+@model HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.StateSelector)
+
+    <!-- Start Page -->
+    if (Model.ShowHeading)
+    {
+        <div class="jumbotron">
+            <h2>Aaron's Programming Reference Guide</h2>
+            <h3>Code and Key References</h3>
+            <h3 class="lead">
+                My Reference is broken down into 4 categories:
+                <ol>
+                    <li class="conceptsText"><i class="fa fa-lightbulb-o"></i>&nbsp; Concepts and Principles</li>
+                    <li class="languageText"><i class="fa fa-keyboard-o"></i>&nbsp; Patterns and Language Specific</li>
+                    <li class="frameworkText"><i class="fa fa-cogs"></i>&nbsp; Framework Fundamentals</li>
+                    <li class="referenceText"><i class="fa fa-fighter-jet"></i>&nbsp; Key References</li>
+                </ol>
+            </h3>
+
+        </div>
+    <!-- /Start Page -->
+    }
+
+    <!-- Standard Format for Categories-->
+    if (Model.ShowSections)
+    {
+        <div class="container selection-area">
+           
+
+                <!-- Individual Partials Area -->
+                @if (Model.ShowConcepts)
+                {@Html.Partial("_ConceptsView")}
+                @if (Model.ShowFramework)
+                { @Html.Partial("_FrameworkView")}
+                @if (Model.ShowLanguage)
+                { @Html.Partial("_LanguageView")}
+                @if (Model.ShowReference)
+                { @Html.Partial("_ReferenceView")}
+
+                
+
+            
+        </div>
+
+    <!-- /Standard Format -->
+    }
+<!-- End Form -->
+}
+
+
