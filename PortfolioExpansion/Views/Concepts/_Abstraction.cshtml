@@ -1,0 +1,49 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Abstraction</div>
+    <div class="panel-body">
+        <h5>Abstraction allows us to create a template for part or all of a class</h5>
+        <p>It's apparent in C# in both Abstract Classes and Interfaces
+        There are some important points about Abstract Base Class :</p>
+        <ol>
+            <li>An Abstract Base class can not be instantiated; it means the object of that class can not be created.</li>
+            <li> Class having abstract keyword and having, abstract keyword with some of its methods (not all) is known as an Abstract Base Class.</li>
+            <li>Class having Abstract keyword and having abstract keyword with all of its methods is known as pure Abstract Base Class.</li>
+            <li>The method of abstract class that has no implementation is known as "operation". It can be defined as abstract void method ();</li>
+            <li> An abstract class holds the methods but the actual implementation of those methods is made in derived class.</li>
+        </ol>
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <pre><code class="language-csharp">
+class program
+{
+    abstract class animal
+    {
+        public abstract void eat();
+        public void sound()
+        {
+            Console.WriteLine("Animal can Breath");
+        }
+    }
+    class dog : animal
+    {
+        public override void eat() { Console.WriteLine("Dog can Eat"); }
+    }
+    static void Main(string[] args)
+    {
+        dog mydog = new dog();
+        animal thePet = mydog;
+        thePet.eat();
+        mydog.sound();
+    }
+}</code></pre>
+
+        <h5> Output: <br />Animal can Breath<br />Dog can Eat</h5>
+    </div>
+</div>
+<!-- /Sample Code -->

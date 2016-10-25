@@ -1,0 +1,67 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Open / Closed Principle</div>
+    <div class="panel-body">
+        <h5>Rather than modifying a class with an If or Switch Statement, create new classes which Extend the declaration of the base class down the logic tree.</h5>
+        <p>
+            Open Closed Principle - <i>software application source codes should be open for extension but should be closed for modification.</i><br />
+            http://www.codeproject.com/Articles/703634/SOLID-architecture-principles-using-simple-Csharp
+        </p>
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample</div>
+
+    <div class="panel-body">
+        <h5>This class is being modified</h5>
+        <pre><code class="language-csharp">
+class Customer
+{
+        private int _CustType;
+        public int CustType
+        {
+            get { return _CustType; }
+            set { _CustType = value; }
+        }
+        public double getDiscount(double TotalSales)
+        {
+                if (_CustType == 1)
+                {
+                    return TotalSales - 100;
+                }
+                else
+                {
+                    return TotalSales - 50;
+                }
+        }
+}
+            </code></pre>
+        <h5>Where these classes extend the class and explicitly return the required variable</h5>
+        <pre><code class="language-csharp">
+class Customer
+{
+        public virtual double getDiscount(double TotalSales)
+        {
+            return TotalSales;
+        }
+}
+  class SilverCustomer : Customer
+    {
+        public override double getDiscount(double TotalSales)
+        {
+            return base.getDiscount(TotalSales) - 50;
+        }
+    }
+class goldCustomer : SilverCustomer
+    {
+        public override double getDiscount(double TotalSales)
+        {
+            return base.getDiscount(TotalSales) - 100;
+        }
+    }
+            </code></pre>
+    </div>
+</div>
+<!-- /Sample Code -->

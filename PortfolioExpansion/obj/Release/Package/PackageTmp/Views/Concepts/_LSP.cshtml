@@ -1,0 +1,86 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Liskov Substitution Principle</div>
+    <div class="panel-body">
+
+        <h5>While the function of the methods may change, the methods of parents class should not cause errors if the derived class is substituted for the parent</h5><br />
+        <p>
+            <i>The derived classes should be perfectly substitutable for their base classes.</i>
+        </p>
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample - LSP</div>
+    <div class="panel-body">
+        <h5>Here, Substituting the derived class, Orange, for Apple ends up in Orange Apples</h5>
+        <pre><code class="language-csharp">
+namespace SolidDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Apple apple = new Orange();
+            Console.WriteLine(apple.GetColor());
+        }
+    }
+ 
+    public class Apple
+    {
+        public virtual string GetColor()
+        {
+            return "Red";
+        }
+    }
+ 
+    public class Orange : Apple
+    {
+        public override string GetColor()
+        {
+            return "Orange";
+        }
+    }
+}</code></pre>
+
+        <h5>Whereas using the template abstract class, Fruit, allows this to work properly and make sense</h5>
+        <pre><code class="language-csharp"></code>
+namespace SolidDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Fruit fruit = new Orange();
+            Console.WriteLine(fruit.GetColor());
+            fruit = new Apple();
+            Console.WriteLine(fruit.GetColor());
+        }
+    }
+ 
+    public abstract class Fruit
+    {
+        public abstract string GetColor();
+    }
+ 
+    public class Apple : Fruit
+    {
+        public override string GetColor()
+        {
+            return "Red";
+        }
+    }
+ 
+    public class Orange : Apple
+    {
+        public override string GetColor()
+        {
+            return "Orange";
+        }
+    }
+}
+</pre>
+    </div>
+</div>
+<!-- /Sample Code -->

@@ -1,0 +1,91 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Single Responsibility Principle</div>
+    <div class="panel-body">
+        <h5>Each class should only handle a logical, narrowly focused set of functions.</h5>
+        <p>
+            Quote From http://www.codeguru.com/columns/experts/solid-principles-in-c-an-overview.htm <br />
+            <i>"SRP states that every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class. There should only be a single reason for making the change to a class."</i><br />
+            The following shows a class for a vehicle service station.  The station has a gate that needs opened and closed as well as performance of the service itself. 
+        </p>
+
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <h5>This Code has too much in the class</h5>
+        <pre><code class="language-csharp">
+                 
+public class ServiceStation
+{
+    public void OpenGate()
+    {
+        //Open the gate if the time is later than 9 AM
+    }
+ 
+    public void DoService(Vehicle vehicle)
+    {
+        //Check if service station is opened and then
+        //complete the vehicle service
+    }
+ 
+    public void CloseGate()
+    {
+        //Close the gate if the time has crossed 6PM
+    }
+}
+            </code></pre>
+
+        <h5>This Code Is Properly Refactored - The Gate Functionality is Split Out</h5>
+        <pre><code class="language-csharp">
+public class ServiceStation
+{
+    IGateUtility _gateUtility;
+ 
+    public ServiceStation(IGateUtility gateUtility)
+    {
+        this._gateUtility = gateUtility;
+    }
+    public void OpenForService()
+    {
+        _gateUtility.OpenGate();
+    }
+ 
+    public void DoService()
+    {
+        //Check if service station is opened and then
+        //complete the vehicle service
+    }
+ 
+    public void CloseForDay()
+    {
+        _gateUtility.CloseGate();
+    }
+}
+ 
+public class ServiceStationUtility : IGateUtility
+{
+    public void OpenGate()
+    {
+        //Open the shop if the time is later than 9 AM
+    }
+ 
+    public void CloseGate()
+    {
+        //Close the shop if the time has crossed 6PM
+    }
+}
+ 
+ 
+public interface IGateUtility
+{
+    void OpenGate();
+    void CloseGate();
+}
+            </code></pre>
+    </div>
+</div>
+<!-- /Sample Code -->

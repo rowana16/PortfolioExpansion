@@ -22,12 +22,17 @@ namespace PortfolioExpansion
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/IndexController.js"));
+                      "~/Scripts/IndexController.js",
+                      "~/Scripts/prism.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
-                      "~/fonts/font-awesome.min.css"));
+                      "~/fonts/font-awesome.min.css",
+                      "~/fonts/fontawesome-webfont.woff",
+                      "~/fonts/fontawesome-webfont.woff2",
+                      "~/fonts/fontawesome-webfont.tff",
+                      "~/Content/prism.css"));
         }
     }
 }

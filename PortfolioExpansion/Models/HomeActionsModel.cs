@@ -10,6 +10,7 @@ namespace PortfolioExpansion.Models
         public void SetState()
         {
             ShowSections = true;
+            
             switch (StateSelector)
             {
                 case "Concepts":
@@ -40,7 +41,8 @@ namespace PortfolioExpansion.Models
             ShowFramework = false;
             ShowReference = false;
             ShowHeading = false;
-            ShowSections = false;
+            ShowSections = false;        
+
         }
         
     }

@@ -1,0 +1,83 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Interface Segregation Principle</div>
+    <div class="panel-body">
+        <h5>Creating a new interface rather than altering one that is in use is a good idea.</h5><br />
+        <h5>Its also a good idea to keep interfaces small so that classes aren't required to implement functionality they don't need.</h5><br />
+        <p><i>No clients should be forced to implement methods which it does not use and the contracts should be broken down to thin ones</i></p>
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <h5>By Including 'ProcessCreditCard' the functionality needs to be provided even if it's a cash payment.</h5>
+        <pre><code class="language-csharp">
+public interface IOrder
+{
+    void Purchase();
+    void ProcessCreditCard();
+}
+ 
+public class OnlineOrder : IOrder
+{
+    public void Purchase()
+    {
+        //Do purchase
+    }
+ 
+    public void ProcessCreditCard()
+    {
+        //process through credit card
+    }
+}
+ 
+public class CashOrder : IOrder
+{
+    public void Purchase()
+    {
+        //Do purchase
+    }
+ 
+    public void ProcessCreditCard()
+    {
+        //Not required for Cash purchase
+        throw new NotImplementedException();
+    }
+}</code></pre>
+        <h5>Easily Solved using 2 Interfaces</h5>
+        <pre><code class="language-csharp">
+public interface IOrder
+{
+    void Purchase();
+}
+ 
+public interface IOnlineOrder
+{
+    void ProcessCreditCard();
+}
+ 
+public class OnlineOrder : IOrder, IOnlineOrder
+{
+    public void Purchase()
+    {
+        //Do purchase
+    }
+ 
+    public void ProcessCreditCard()
+    {
+        //process through credit card
+    }
+}
+ 
+public class CashOrder : IOrder
+{
+    public void Purchase()
+    {
+        //Do purchase
+    }
+}</code></pre>
+    </div>
+</div>
+<!-- /Sample Code -->

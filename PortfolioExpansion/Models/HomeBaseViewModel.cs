@@ -16,6 +16,7 @@ namespace PortfolioExpansion.Models
         public bool ShowReference { get; set; }
         
         public string StateSelector { get; set; }
+        
 
     }
 }

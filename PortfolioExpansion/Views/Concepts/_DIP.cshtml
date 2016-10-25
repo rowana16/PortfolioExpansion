@@ -1,0 +1,93 @@
+﻿
+    <!--Discussion and Notes-->
+    <div class="panel panel-success">
+        <div class="panel-heading">Discussion - Dependency Inversion Principle</div>
+        <div class="panel-body">
+            <h5>Any module depending on another class to perform a service, action, or set of data should have that relationship handled via an interface.</h5><br />
+            <h5>This allows that dependency to be switched out or updated without affecting the 'higher order' class.</h5><br />
+            <p>
+                <i> The higher level modules should be coupled with the lower level modules with complete abstraction.</i><br />
+                This definitely feels like a call out to IoC which is discussed later.  The Example provided is Constructor Injection.
+            </p>
+        </div>
+    </div>
+
+    <!-- /Discussion and Notes-->
+    <!-- Sample Code -->
+    <div class="panel panel-success">
+        <div class="panel-heading">Sample</div>
+        <div class="panel-body">
+            <h5>There are several ways to log a file.  This program uses an interface to allow them to be loosely coupled.</h5>
+            <pre><code class="language-csharp">
+    interface ILogger
+    {
+        void Handle(string error);
+    }
+                </code></pre>
+
+            <pre><code class="language-csharp">
+    class FileLogger : ILogger
+    {
+        public void Handle(string error)
+        {
+            System.IO.File.WriteAllText("c:\Error.txt", error);
+        }
+    }
+    class EverViewerLogger : ILogger
+    {
+        public void Handle(string error)
+        {
+            // log errors to event viewer
+        }
+    }
+    class EmailLogger : ILogger
+    {
+        public void Handle(string error)
+        {
+            // send errors in email
+        }
+    }
+                </code></pre>
+            <h5>When implemented the exception logging can be handled this way:</h5>
+            <pre><code class="language-csharp">
+    class Customer : IDiscount, IDatabase
+        {
+            private IException obj;
+        public virtual void Add(int Exhandle)
+            {
+                try
+                {
+                    // Database code goes here
+                }
+                catch (Exception ex)
+                {
+                    if (Exhandle == 1)
+                    {
+                        obj = new MyException();
+                    }
+                    else
+                    {
+                        obj = new EmailException();
+                    }
+                    obj.Handle(ex.Message.ToString());
+                }
+            }
+        }   </code></pre>
+            <h5>However it should be handled by giving control to the constructor</h5>
+            <pre><code class="language-csharp">
+    class Customer : IDiscount, IDatabase
+     {
+            private Ilogger obj;
+            public Customer(ILogger i)
+            {
+                obj = i;
+            }
+    }</code></pre>
+            <h5> ... and finally giving full control to the point of creation!</h5>
+            <pre><code class="language-csharp">
+     IDatabase i = new Customer(new EmailLogger());
+                </code></pre>
+        </div>
+    </div>
+    <!-- /Sample Code -->
+        

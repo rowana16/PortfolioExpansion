@@ -1,0 +1,65 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Polymorphism</div>
+    <div class="panel-body">
+        <h5>Polymorphism has 2 types: Compile Time and Run Time.</h5><br />
+        <p>Compile Time is frequently called Operator Overloading</p><br />
+        <p>Run Time is shown with a virtual or abstract being overridden within the inherited class <br /></p>
+    </div>
+    <!-- /Discussion and Notes-->
+    <!-- Sample Code -->
+    <div class="panel panel-success">
+        <div class="panel-heading">Sample</div>
+        <div class="panel-body">
+            <h5>A common overloading example:</h5>
+            <pre><code class="language-csharp">
+                                     
+public class Class1
+{
+    public void NumbersAdd(int a, int b)
+    {
+    Console.WriteLine(a + b);
+    }
+    public void NumbersAdd(int a, int b, int c)
+    {
+    Console.WriteLine(a + b + c);
+    }
+}
+                </code></pre>
+            <h5>An example of virtual/override</h5>
+            <pre><code class="language-csharp">
+ //Base Class
+public class Bclass
+{
+    public virtual void Sample1()
+    {
+        Console.WriteLine("Base Class");
+    }
+}
+
+// Derived Class
+public class DClass : Bclass
+{
+    public override void Sample1()
+    {
+        Console.WriteLine("Derived Class");
+    }
+}
+// Using base and derived class
+class Program
+{
+    static void Main(string[] args)
+    {
+        // calling the overriden method
+        DClass objDc = new DClass();
+        objDc.Sample1();
+
+        // calling the base class method
+        Bclass objBc = new DClass();
+        objBc.Sample1();
+    }
+}
+                 </code></pre>
+        </div>
+    </div>
+    <!-- /Sample Code -->

@@ -1,0 +1,77 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Inheritance</div>
+    <div class="panel-body">
+        <h5>Inheritance allows 1 class to begin with all of the contents of a base class</h5>
+        <p><i>Inheritance allows us to define a class in terms of another class, which makes it easier to create and maintain an application. This also provides an opportunity to reuse the code functionality and speeds up implementation time.</i></p>
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <h5>
+            A key trick is ensuring the base class is initialized properly, particularly if it takes parameters.<br />
+            C# does not support multiple inheritance.
+        </h5>
+        <pre><code class="language-csharp">
+using System;
+namespace RectangleApplication
+{
+   class Rectangle
+   {
+      //member variables
+      protected double length;
+      protected double width;
+      public Rectangle(double l, double w)
+      {
+         length = l;
+         width = w;
+      }
+      
+      public double GetArea()
+      {
+         return length * width;
+      }
+      
+      public void Display()
+      {
+         Console.WriteLine("Length: {0}", length);
+         Console.WriteLine("Width: {0}", width);
+         Console.WriteLine("Area: {0}", GetArea());
+      }
+   }//end class Rectangle  
+   
+   class Tabletop : Rectangle
+   {
+      private double cost;
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      public Tabletop(double l, double w) : base(l, w) // Passing variables to base constructor
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      { }
+      public double GetCost()
+      {
+         double cost;
+         cost = GetArea() * 70;
+         return cost;
+      }
+      public void Display()
+      {
+         base.Display();
+         Console.WriteLine("Cost: {0}", GetCost());
+      }
+   }
+   class ExecuteRectangle
+   {
+      static void Main(string[] args)
+      {
+         Tabletop t = new Tabletop(4.5, 7.5);
+         t.Display();
+         Console.ReadLine();
+      }
+   }
+}</code></pre>
+    </div>
+</div>
+<!-- /Sample Code -->
