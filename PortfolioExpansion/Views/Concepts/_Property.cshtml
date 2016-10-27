@@ -1,12 +1,37 @@
 ﻿<!--Discussion and Notes-->
 <div class="panel panel-success">
-    <div class="panel-heading">Discussion</div>
-    <div class="panel-body"></div>
+    <div class="panel-heading">Discussion - Property Injection</div>
+    <div class="panel-body">
+        <h5>This is also called 'Setter' Injection</h5>
+        <p>Instead of only having the ability to set the dependency upon creation, you can create a property to hold the dependency and then set the dependency using a program like Ninject to set that value.</p>
+    </div>
 </div>
 <!-- /Discussion and Notes-->
 <!-- Sample Code -->
 <div class="panel panel-success">
-    <div class="panel-heading">Sample - Test1</div>
-    <div class="panel-body"></div>
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <h5>Labelling the property [Inject] and binding the dependency to the property will set the dependency.</h5>
+        <pre><code class="language-csharp">
+class Samurai
+{
+    [Inject]
+    public IWeapon weapon {get; set;}    
+    public void Attack(string target) 
+    {
+        this.weapon.Hit(target);
+    }
+}
+class PropertyInjectDemo
+{
+    static void Main(string[] args)
+    {
+        IKernel kernel = new StandardKernel();
+        kernel.Bind< IWeapon >().To< Sword >();
+        ...
+    }
+}
+            </code></pre>
+    </div>
 </div>
 <!-- /Sample Code -->

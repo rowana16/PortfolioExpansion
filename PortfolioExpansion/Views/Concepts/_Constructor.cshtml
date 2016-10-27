@@ -1,12 +1,82 @@
 ﻿<!--Discussion and Notes-->
 <div class="panel panel-success">
-    <div class="panel-heading">Discussion</div>
-    <div class="panel-body"></div>
+    <div class="panel-heading">Discussion - Constructor Injection</div>
+    <div class="panel-body"><h5>Managing dependencies from outside the class, Inversion of Control (IoC).</h5><br />  In this case, the dependency is set directly when the Samurai object is created.<br />  The desired dependency is provided in as a parameter to the constructor.</div>
 </div>
 <!-- /Discussion and Notes-->
 <!-- Sample Code -->
 <div class="panel panel-success">
-    <div class="panel-heading">Sample - Test1</div>
-    <div class="panel-body"></div>
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <h5>Tightly Coupled</h5>
+        <p>In this case, the samurai must use a sword</p>
+        <pre><code class="language-csharp">
+ class Samurai
+{
+    readonly Sword sword;
+    public Samurai() 
+    {
+        this.sword = new Sword();
+    }
+    public void Attack(string target)
+    {
+        this.sword.Hit(target);
+    }
+}</code></pre>
+        <h5>Tightly Coupled with Interface</h5>
+        <p>In this case, an interface replaces the direct call to the sword class, but the sword is still being directly implemented in the constructor.</p>
+        <pre><code class="language-csharp">
+interface IWeapon
+{
+    void Hit(string target);
+}
+            
+class Sword : IWeapon
+{
+    public void Hit(string target) 
+    {
+        Console.WriteLine("Chopped {0} clean in half", target);
+    }
+}
+class Samurai
+{
+    readonly IWeapon weapon;
+    public Samurai() 
+    {
+        this.weapon = new Sword(); 
+    }
+    public void Attack(string target) 
+    {
+        this.weapon.Hit(target);
+    }
+}          </code></pre>
+
+        <h5>Done Right - we can invert control to the creating class by setting the weapon at construction by passing the weapon in.  Now if we want Nunchucks, we can have em. </h5><br />
+        <p>We just need to implement the IWeapon interface.  Then pass it to the constructor of Samurai.</p>
+        <pre><code class="language-csharp">
+class Nunchuck : IWeapon
+{
+    public void Hit(string target) 
+    {
+        Console.WriteLine("Knocked {0} clean out", target);
+    }
+}
+
+class Samurai
+{
+    readonly IWeapon weapon;
+    public Samurai(IWeapon weapon) 
+    {
+        this.weapon = weapon;
+    }
+    public void Attack(string target) 
+    {
+        this.weapon.Hit(target);
+    }
+}
+
+Samurai(Nunchuk);
+            </code></pre>
+    </div>
 </div>
 <!-- /Sample Code -->

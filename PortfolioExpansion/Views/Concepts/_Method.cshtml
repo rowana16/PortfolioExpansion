@@ -1,12 +1,33 @@
 ﻿<!--Discussion and Notes-->
 <div class="panel panel-success">
-    <div class="panel-heading">Discussion</div>
-    <div class="panel-body"></div>
+    <div class="panel-heading">Discussion - Method Injection</div>
+    <div class="panel-body">
+        <h5>Uses a Method to set the dependency after construction</h5>
+        <p>This is apparently setter method injection, perhaps there is another type called simply method.</p>
+    </div>
 </div>
 <!-- /Discussion and Notes-->
 <!-- Sample Code -->
 <div class="panel panel-success">
-    <div class="panel-heading">Sample - Test1</div>
-    <div class="panel-body"></div>
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <h5>Calling Arm(weaponType) will change the dependency</h5>
+        <pre><code class="language-csharp">
+class Samurai
+{
+    IWeapon weapon;
+  
+    [Inject]
+    public void Arm(IWeapon weapon)
+    {
+        this.weapon = weapon;
+    }
+  
+    public void Attack(string target) 
+    {
+        this.weapon.Hit(target);
+    }
+}</code></pre>
+    </div>
 </div>
 <!-- /Sample Code -->
