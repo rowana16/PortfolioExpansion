@@ -123,6 +123,7 @@
     <Compile Include="Controllers\ConceptsController.cs" />
     <Compile Include="Controllers\FrameworkController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
     <Compile Include="Global.asax.cs">
@@ -142,6 +143,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\AIF Object Model.jpeg" />
+    <Content Include="Images\AIF.jpeg" />
+    <Content Include="Images\CTI Model.jpeg" />
+    <Content Include="Images\CTI.jpeg" />
+    <Content Include="Images\DDA.jpeg" />
+    <Content Include="Images\HAT.jpeg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -197,12 +204,15 @@
     <Content Include="Views\Concepts\_Mocking.cshtml" />
     <Content Include="Views\Concepts\_UnitTest.cshtml" />
     <Content Include="Views\Concepts\_Validation.cshtml" />
+    <Content Include="Views\Reference\_MeanStack.cshtml" />
+    <Content Include="Views\Reference\_LampStack.cshtml" />
+    <Content Include="Views\Shared\_JobView.cshtml" />
+    <Content Include="Views\Job\_UII.cshtml" />
+    <Content Include="Views\Language\_Singleton.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Framework\" />
-    <Folder Include="Views\Language\" />
-    <Folder Include="Views\Reference\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

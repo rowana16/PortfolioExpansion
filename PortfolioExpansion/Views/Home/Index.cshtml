@@ -43,10 +43,12 @@
                 { @Html.Partial("_LanguageView")}
                 @if (Model.ShowReference)
                 { @Html.Partial("_ReferenceView")}
+                @if (Model.ShowJob)
+                { @Html.Partial("_JobView")}
 
-                
 
-            
+
+
         </div>
 
     <!-- /Standard Format -->

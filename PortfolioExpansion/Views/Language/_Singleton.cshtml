@@ -1,0 +1,58 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        Singleton Design Pattern
+    </div>
+    <div class="panel-body">
+        <h5>Ensures that a class has only one instance and provides a global point of access to it.</h5>
+        <p><b>General Structure</b></p>
+        <ul style="list-style-type:none">
+            <li>Private Constructor - Ensures the class has only one instance.</li>
+            <li>Private Static Variable - within class to hold the instance.</li>
+            <li>Public Static Method - Creates the instance if new, otherwise returns the instance.</li>
+        </ul>
+
+        <p><b>Issues</b></p>
+        <ul style="list-style-type:none">
+            <li>MultiThreading can produce multiple instances. Use Lock() or instantiate early or Fully Lazy as shown here</li>
+            <li>
+                <pre><code class="language-csharp">
+public sealed class Singleton
+  {
+    private Singleton()
+    {
+    }
+ 
+    public static Singleton GetInstance { get { return GetInstance.instance; } }
+        
+    private class GetInstance
+    {
+        // Explicit static constructor to tellcompiler
+        // not to mark type as beforefieldinit
+        static GetInstance()
+        {
+        }
+ 
+        internal static readonly Singleton instance = new Singleton();
+    }
+}
+                    </code></pre>
+            </li>
+            <li>Can Still Be Duplicated by Cloning, Reflection and Sub-Classing</li>
+            <li>Prevent Cloning by:<b>Overriding the Clone Method</b></li>
+            <li>Prevent Reflection by: <b>Adding a exception to the constructor if reached when not null</b></li>
+            <li>Prevent subclass by: Keeping the constructor Private</li>
+        </ul>
+        <h5>Uses:</h5>
+        <ul style="list-style-type:none">
+            <li>Logger</li>
+            <li>Cache</li>
+        </ul>
+        <h5>Drawbacks</h5>
+        <ul style="list-style-type:none">
+            <li>Difficult to Unit Test - Instantiation Control and State Retainment</li>
+            <li>Memory allocated can't be freed</li>
+            <li>Multithreading Issues</li>
+            <li>Difficult to Loosely Couple</li>
+        </ul>
+</div>
+</div>

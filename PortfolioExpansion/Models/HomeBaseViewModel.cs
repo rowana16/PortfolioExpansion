@@ -14,6 +14,7 @@ namespace PortfolioExpansion.Models
         public bool ShowLanguage { get; set; }
         public bool ShowFramework { get; set; }
         public bool ShowReference { get; set; }
+        public bool ShowJob { get; set; }
         
         public string StateSelector { get; set; }
         

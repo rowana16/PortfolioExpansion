@@ -29,6 +29,10 @@ namespace PortfolioExpansion.Models
                     ShowReference = true;
                     break;
 
+                case "Job":
+                    ShowJob = true;
+                    break;
+
                 default:
                     break;
             }
@@ -40,6 +44,7 @@ namespace PortfolioExpansion.Models
             ShowLanguage = false;
             ShowFramework = false;
             ShowReference = false;
+            ShowJob = false;
             ShowHeading = false;
             ShowSections = false;        
 
