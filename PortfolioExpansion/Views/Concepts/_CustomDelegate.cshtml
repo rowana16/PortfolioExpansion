@@ -1,0 +1,55 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Custom Delegate</div>
+    <div class="panel-body">
+        <h5>Custom Delegates</h5>
+        <p>
+            Delegates are the pipe between an event and an event handler. <br />
+            They not only provide the path but also the requirements of the event handler, <br />
+            ensuring the information provided by the event is sufficient for the handler to perform the required action.<br />
+            <b>Delegates are typically ended with 'Handler'</b>
+        </p>
+        <p>
+            Custom Delegates are the most formal, flexible and reusable delegates
+        </p>
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <pre><code class="language-csharp">
+// Define the Delegate
+public delegate void CustomHandler (int Prop1, int Prop2, CustomType customType);
+
+class Program
+{
+    static void Main(string args[])
+    {
+        // Create Instance of Delegate and point it to a method with the correct signature.
+        CustomHandler del1 = new CustomHandler(WorkPerformed1);   
+            
+        // Call the Delegate
+        del1(8,6,CustomType.Option1);
+    }
+
+    //method with required signature.
+    static void WorkPeformed1(int hours, int minutes, CustomType cType)
+    {
+        Console.WriteLine("Work Took " + hours + " hours and " + minutes + " minutes." );
+    }
+}
+
+public enum CustomType
+{
+    Option1,
+    Option2,
+    Option3            
+}
+</code></pre>
+
+
+    </div>
+</div>
+<!-- /Sample Code -->

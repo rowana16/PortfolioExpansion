@@ -1,0 +1,105 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Event Handlers</div>
+    <div class="panel-body">
+        <h5>Creating Event Handlers</h5>
+        <p>
+            An event handler will accept the arguements passed to it from the event,<br />
+            perform its constituent actions and <br />
+            return any specified informtion back to the class which triggered the event.
+        </p>
+
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <pre><code class="language-csharp">
+// Define the Delegate
+public delegate void CustomHandler (int Prop1, int Prop2, CustomType customType);
+class Program
+{
+    static void Main(string args[])
+    {
+        var worker = new Worker();  // Create Instance of Worker Class
+        worker.WorkPerformed += new EventHandler/< WorkPerformedEventArgs /> (worker_WorkPerformed); // Wire Up Delegate to EventHandler
+        worker.DoWork(8,WorkType.GenerateReports);     
+       //
+        Console.Read();
+    }
+    //Event Handler!!
+    static void worker_WorkPerformed(object sender, WorkPerformedEventArgs e )
+    {
+        Console.WriteLine(e.Hours + " " + e.cType)
+    }
+    
+}
+public enum CustomType
+{
+    Option1,
+    Option2,
+    Option3            
+}
+//==================== Separate Class File =================================
+//instance of the delegate
+public delegate void CustomHandler (object sender, WorkPerformedEventArgs e);  //This Is The Standard .Net approach for Parameters 
+//
+public class Worker 
+{
+    public event CustomHandler WorkPerformed; //Custom Event Handler - This can be altered to allow elimination of delegate declaration (Event Handler of T)
+    public event EventHandler WorkCompleted;  //Standard Built-in Event Handling;
+    //        
+    public void DoWork(int hours, CustomType cType)  
+    {
+        for (int i = 0; i < hours; i++)         
+        {
+            OnWorkPerformed( i + 1, cType); 
+        }
+        OnWorkCompleted();
+    }  
+    //        
+    //Add Separate Method for Each Event You Want to Raise
+    //Making it virtual allows for it to be redifined by any classes which might inherit it.
+    //
+    protected virtual void OnWorkPerformed(int hours, CustomType nameOfType) //convention is to beging an event call with 'On-'
+    {
+        var del = WorkPerformed as WorkPerformedHandler;
+        if(del != null)
+        {
+            del(this, new WorkPerformedEventArgs(hours, cType));  //Change the actual call to the delegate to pass the correct info
+        }
+    } 
+    //
+    protected virtual void OnWorkCompleted()
+    {
+        var del = WorkCompleted as EventHandler;
+        //
+        if(del != null)
+        {
+            del(this, EventArgs.Empty);
+        }
+    }
+                  
+}
+//==================== Separate Class File =================================
+//Create a class which contains all the information you would like the event to pass to the event listeners through the delegate
+public class WorkPerformedEventArgs : EventArgs
+{
+    //Provide a constructor for easy creation
+    public WorkPerformedEventArgs(int hours, CustomType cType)
+    {
+        Hours = hours;
+        cType = cType;
+    }
+    //
+    public int Hours {get; set;}
+    public CustomType cType {get; set;}
+}
+</code></pre>
+
+
+    </div>
+</div>
+<!-- /Sample Code -->

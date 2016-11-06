@@ -149,6 +149,7 @@
     <Content Include="Images\CTI.jpeg" />
     <Content Include="Images\DDA.jpeg" />
     <Content Include="Images\HAT.jpeg" />
+    <Content Include="Images\triangle.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -209,6 +210,11 @@
     <Content Include="Views\Shared\_JobView.cshtml" />
     <Content Include="Views\Job\_UII.cshtml" />
     <Content Include="Views\Language\_Singleton.cshtml" />
+    <Content Include="Views\Concepts\_CustomDelegate.cshtml" />
+    <Content Include="Views\Concepts\_Delegate_Dynamic.cshtml" />
+    <Content Include="Views\Concepts\_Events.cshtml" />
+    <Content Include="Views\Concepts\_EventArgs.cshtml" />
+    <Content Include="Views\Concepts\_EventHandler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

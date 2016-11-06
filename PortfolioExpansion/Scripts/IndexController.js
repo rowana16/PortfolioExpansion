@@ -5,6 +5,14 @@
         $('form').submit();
     })
 
+    $('#currPartial').bind('ajaxStart', function () {
+        $(this).html('<img src="triangle.svg">');
+    })
+
+    $('#currPartial').bind('ajaxStop', function () {
+        $(this).html('');
+    })
+
     $('.submitClick').on('click', function (e) {
         var viewSelect = $(this).data('submit-action');
         var controller = $('#StateSelector').val();

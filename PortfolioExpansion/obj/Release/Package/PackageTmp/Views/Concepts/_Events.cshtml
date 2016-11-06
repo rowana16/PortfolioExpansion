@@ -1,0 +1,97 @@
+﻿<!--Discussion and Notes-->
+<div class="panel panel-success">
+    <div class="panel-heading">Discussion - Events</div>
+    <div class="panel-body">
+        <h5>Defining and Raising Events</h5>
+        <p>
+            Events trigger information to be be passed to any listeners which are connected via delegates.
+        </p>
+        <p>
+            <b>Events are typically named identical to the delegate but without the 'handler' suffix.</b>
+        </p>
+    </div>
+</div>
+<!-- /Discussion and Notes-->
+<!-- Sample Code -->
+<div class="panel panel-success">
+    <div class="panel-heading">Sample</div>
+    <div class="panel-body">
+        <pre><code class="language-csharp">
+// Define the Delegate
+public delegate void CustomHandler (int Prop1, int Prop2, CustomType customType);
+class Program
+{
+    static void Main(string args[])
+    {
+        // Create Instance of Delegate and point it to a method with the correct signature.
+        CustomHandler del1 = new CustomHandler(WorkPerformed1);     
+        
+        // Pass in any delegate you would like to.   
+        DoWork(del1);          
+       
+    }
+    //Separate Method Able to Call any Delegate
+    static void DoWork(CustomHandler del)
+    {
+        // Call / invoke the Delegate and pass required information
+        del1(8,6,CustomType.Option1);
+    }
+    //method with required signature.
+    static void WorkPeformed1(int hours, int minutes, CustomType cType)
+    {
+        Console.WriteLine("Work Took " + hours + " hours and " + minutes + " minutes." );
+    }
+}
+public enum CustomType
+{
+    Option1,
+    Option2,
+    Option3            
+}
+//==================== Separate Class File =================================
+//instance of the delegate
+public delegate void CustomHandler (int Prop1, int Prop2, CustomType customType);
+//
+public class Worker 
+{
+    public event CustomHandler WorkPerformed; //Custom Event Handler
+    public event EventHandler WorkCompleted;  //Standard Built-in Event Handling;
+    //        
+    public void DoWork(int hours, CustomType cType)  
+    {
+        for (int i = 0; i < hours; i++)         
+        {
+            OnWorkPerformed( i + 1, cType); 
+        }
+        OnWorkCompleted();
+    }  
+    //        
+    //Add Separate Method for Each Event You Want to Raise
+    //Making it virtual allows for it to be redifined by any classes which might inherit it.
+    //
+    protected virtual void OnWorkPerformed(int hours, CustomType nameOfType) //convention is to beging an event call with 'On-'
+    {
+        var del = WorkPerformed as WorkPerformedHandler;
+        if(del != null)
+        {
+            del(hours, nameOfType);
+        }
+    } 
+    //
+    protected virtual void OnWorkCompleted()
+    {
+        var del = WorkCompleted as EventHandler;
+        //
+        if(del != null)
+        {
+            del(this, EventArgs.Empty);
+        }
+    }
+                  
+}
+</code></pre>
+
+
+    </div>
+</div>
+<!-- /Sample Code -->
